@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Support Chatbot</title>
-</head>
-<body>
-  <h1>Ask me anything!</h1>
-  <form id="chat-form">
-    <input type="text" id="message" placeholder="Type your question..." required />
-    <button type="submit">Send</button>
-  </form>
-  <div id="response"></div>
-
-  <script src="src/chat.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- React will mount your entire app into this div -->
+    <script type="module" src="src/main.jsx"></script>
+  </body>
 </html>
