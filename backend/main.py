@@ -4,7 +4,7 @@ import requests
 
 app = FastAPI()
 
-# Enable CORS so frontend (localhost:3000) can talk to it
+# Enable CORS to allow frontend (on localhost:3000) to call backend (on 8000)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -18,15 +18,20 @@ async def chat(request: Request):
     user_message = data.get("message", "")
 
     payload = {
-        "model": "deepseek-coder",
+        "model": "deepseek-coder:6.7b",
         "messages": [
             {"role": "system", "content": "You are an expert code assistant."},
             {"role": "user", "content": user_message}
-        ]
+        ],
+        "stream": False  # make sure stream is false for simple response
     }
 
     try:
-        res = requests.post("http://localhost:11434/api/chat", json=payload)
+        res = requests.post(
+            "http://host.docker.internal:11434/api/chat",  # docker-to-host communication
+            headers={"Content-Type": "application/json"},
+            json=payload
+        )
         res.raise_for_status()
         reply = res.json()["message"]["content"]
         return {"response": reply}
