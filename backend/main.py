@@ -18,7 +18,7 @@ async def chat(request: Request):
     user_message = data.get("message", "")
 
     payload = {
-        "model": "deepseek-coder:6.7b",
+        "model": "llama3",
         "messages": [
             {"role": "system", "content": "You are an expert code assistant."},
             {"role": "user", "content": user_message}
