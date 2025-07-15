@@ -10,7 +10,7 @@ async def chat(request: Request):
     message = data.get("message", "")
     return await get_ai_response(message)
 
-@router.post("/chatOpenAi")
+@router.post("/chat-groq")
 async def chatAi(request: Request):
     data = await request.json()
     message = data.get("message", "")

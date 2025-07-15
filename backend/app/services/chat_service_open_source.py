@@ -11,7 +11,6 @@ class ChatRequest(BaseModel):
     
 GROQ_URL = os.getenv("GROQ_API_URL")
 GROQ_KEY = os.getenv("GROQ_API_KEY")
-
 @app.post("/chat-groq")
 async def chat_endpoint(data: ChatRequest):
     payload = {
@@ -36,7 +35,7 @@ async def chat_endpoint(data: ChatRequest):
     }
 
     headers = {
-        "Authorization": "",
+        "Authorization": GROQ_KEY,
         "Content-Type": "application/json"
     }
 
