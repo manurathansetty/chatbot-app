@@ -3,7 +3,7 @@ document.getElementById('chat-form').addEventListener('submit', async (e) => {
 
   const message = document.getElementById('message').value;
 
-  const res = await fetch('http://localhost:8000/api/chat', {
+  const res = await fetch('http://localhost:8000/api/chatOpenAi', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

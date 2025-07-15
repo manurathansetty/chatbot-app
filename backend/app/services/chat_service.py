@@ -2,6 +2,7 @@ import requests
 
 SYSTEM_PROMPT = (
     "You are an FAQ bot for XYZ Company. Answer only based on these:\n"
+    "- Your name: Personalizable chat bot \n"
     "- Return policy: 30 days.\n"
     "- Order tracking: Use orders page.\n"
     "- International shipping: Yes.\n"

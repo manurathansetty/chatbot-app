@@ -9,7 +9,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 🧠 Copy the entire project (make sure .dockerignore is clean)
-COPY ./app ./app
+COPY . .
 
 # 🚀 Set the command to run the app
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
