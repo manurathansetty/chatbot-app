@@ -12,7 +12,7 @@ class ChatRequest(BaseModel):
 GROQ_URL = os.getenv("GROQ_API_URL")
 GROQ_KEY = os.getenv("GROQ_API_KEY")
 
-@app.post("/chatOpenAi")
+@app.post("/chat-groq")
 async def chat_endpoint(data: ChatRequest):
     payload = {
         "model": "llama3-8b-8192",

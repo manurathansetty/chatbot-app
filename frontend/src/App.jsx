@@ -10,7 +10,7 @@ const App = () => {
     setMessages((prev) => [...prev, newMessage]);
 
     try {
-      const res = await fetch('http://localhost:8000/api/chatOpenAi', {
+      const res = await fetch('http://localhost:8000/api/chat-groq', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message }),
