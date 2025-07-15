@@ -1,14 +1,16 @@
+import os
 from fastapi import FastAPI
 from pydantic import BaseModel
 import httpx
+from dotenv import load_dotenv
+load_dotenv()
 
 app = FastAPI()
-
-GROQ_API_KEY = "your_groq_api_key"  # Replace with your real one
-GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
-
 class ChatRequest(BaseModel):
     message: str
+    
+GROQ_URL = os.getenv("GROQ_API_URL")
+GROQ_KEY = os.getenv("GROQ_API_KEY")
 
 @app.post("/chatOpenAi")
 async def chat_endpoint(data: ChatRequest):
@@ -39,7 +41,7 @@ async def chat_endpoint(data: ChatRequest):
     }
 
     async with httpx.AsyncClient() as client:
-        response = await client.post(GROQ_API_URL, json=payload, headers=headers)
+        response = await client.post(GROQ_URL, json=payload, headers=headers)
         response.raise_for_status()
         result = response.json()
     
