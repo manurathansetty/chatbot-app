@@ -92,6 +92,8 @@ body::before {
   border-radius: 8px;
   border: none;
   outline: none;
+  text-color:  #fff;
+  background-color:  #3a3a3a;
 }
 
 .send-button {
