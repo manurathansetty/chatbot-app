@@ -1,25 +1,64 @@
+:root {
+  --color-primary: #FFD700;
+  --color-primary-light: #FFEB3B;
+  --color-primary-dark: #FFC107;
+  --color-dark: #121212;
+  --color-dark-light: #1E1E1E;
+  --color-dark-gray: #2D2D2D;
+}
+
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: #1e1e1e;
-  color: white;
+  background: var(--color-dark);
+  color: #fff;
 }
+
+/* Global thunderbolt wallpaper behind everything */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  /* Layer 1: repeated yellow bolt icons */
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23FFD700' fill-opacity='0.12' d='M13 2L3 14h6l-1 8 11-14h-7z'/></svg>"),
+    /* Layer 2: subtle horizontal lines across the page */
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 215, 0, 0.07) 0px,
+      rgba(255, 215, 0, 0.07) 1px,
+      rgba(0, 0, 0, 0) 1px,
+      rgba(0, 0, 0, 0) 48px
+    );
+  background-repeat: repeat, repeat;
+  background-size: 56px 56px, auto;
+  background-position: 0 0, 0 0;
+  pointer-events: none;
+}
+
+/* Ensure app content stays above wallpaper */
+#root { position: relative; z-index: 1; }
 
 .chat-container {
   max-width: 600px;
   margin: 2rem auto;
   padding: 1rem;
-  background: #2c2c2c;
+  background: var(--color-dark-gray);
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   height: 80vh;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
 .chat-box {
   flex: 1;
   overflow-y: auto;
   margin-bottom: 1rem;
+  padding-right: 0.25rem;
 }
 
 .message {
@@ -32,8 +71,8 @@ body {
 
 .message.user {
   align-self: flex-end;
-  background-color: #4e9af1;
-  color: white;
+  background-color: var(--color-primary-dark);
+  color: #111;
 }
 
 .message.bot {
@@ -55,11 +94,68 @@ body {
   outline: none;
 }
 
-.chat-input button {
-  padding: 0.75rem 1rem;
-  background-color: #4e9af1;
-  color: white;
-  border: none;
-  border-radius: 8px;
+.send-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 0.7rem;
+  background-color: #000;
+  color: var(--color-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
   cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.send-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(255, 215, 0, 0.25);
+}
+
+.send-button:active {
+  transform: translateY(0);
+}
+
+.send-thunder {
+  fill: var(--color-primary);
+}
+
+
+/* ThunderField background */
+.thunderfield {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.thunderbolt-svg {
+  position: absolute;
+  left: -10%;
+  width: 24px;
+  height: 24px;
+  fill: var(--color-primary);
+  animation-name: boltFloat;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes boltFloat {
+  0% {
+    transform: translateX(0) scale(0.8);
+  }
+  100% {
+    transform: translateX(120%) scale(0.8);
+  }
+}
+
+/* subtle gradient vignette */
+.theme-dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(1200px 400px at -10% 10%, rgba(255, 215, 0, 0.12), transparent 60%),
+              radial-gradient(800px 300px at 110% 90%, rgba(255, 235, 59, 0.08), transparent 60%);
+  pointer-events: none;
 }

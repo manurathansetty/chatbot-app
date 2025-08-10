@@ -18,7 +18,17 @@ const ChatInput = ({ onSend }) => {
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <button type="submit">Send</button>
+      <button type="submit" className="send-button" aria-label="Send">
+        <svg
+          className="send-thunder"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          aria-hidden="true"
+        >
+          <path d="M13 2L3 14h6l-1 8 11-14h-7z" />
+        </svg>
+      </button>
     </form>
   );
 };

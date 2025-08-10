@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ChatBox from './components/ChatBox.jsx';
 import ChatInput from './components/ChatInput.jsx';
+import ThunderField from './components/ThunderField.jsx';
+import './components/index.css';
 
 const App = () => {
   const [messages, setMessages] = useState([]);
@@ -26,7 +28,8 @@ const App = () => {
   };
 
   return (
-    <div className="chat-container">
+    <div className="chat-container theme-dark">
+      <ThunderField />
       <div className="chat-box">
         {messages.map((msg, index) => (
           <ChatBox key={index} message={msg} />
