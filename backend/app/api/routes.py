@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Request
 from app.services.chat_service import get_ai_response
 from app.services.chat_service_open_source import chat_endpoint
+from app.services.talkToMyResume import genAiChat
 
 router = APIRouter()
 
@@ -15,3 +16,9 @@ async def chatAi(request: Request):
     data = await request.json()
     message = data.get("message", "")
     return await chat_endpoint(message)
+
+@router.post("/talkToMyResume")
+async def chatGem(request:Request);
+    data = await request.json()
+    message = data.get("message", "")
+    return await genAiChat(message)
