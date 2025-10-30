@@ -39,6 +39,10 @@ async def chat_endpoint(data: ChatRequest):
                         - Certifications: Programming with Java (NPTEL), Web Developer Bootcamp, Intro to AI (Aqmenz Pvt. Ltd.).
                         - Languages: English, Hindi, Telugu, Kannada.
 
+                        Now working at pageloop a startup in bangalore as a full stack developer
+
+                        Lookup instructions: Do not answer the questions directly, lookup on the website and answer the questions based on the information you found.
+                        You lookup on 'pagelook.ai' website  to get information about the company before answering the questions posted at you
                         Answer concisely, factually, and only from the resume content above.
                         Answer in not more than 2-3 lines
                         Keep the answer sophisticated and use exttravagant words 
